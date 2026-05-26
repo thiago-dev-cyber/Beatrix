@@ -1,0 +1,85 @@
+Table Clientes {
+  id uuid [primary key]
+  nome_completo varchar(255)
+  cpf char(11)
+  email varchar(255)
+  celular char(15)
+}
+
+Table Tecnicos {
+  id uuid [primary key]
+  nome_completo varchar(255)
+  cpf char(11)
+  email varchar(255)
+  celular char(15)
+}
+
+Table EnderecoClientes {
+  id uuid [primary key]
+  cliente_id int [ref: > Clientes.id]
+  cep char(8)
+  rua varchar(80)
+  bairro varchar(20)
+  cidade varchar(20)
+  estado varchar(20)
+  numero varchar(20)
+  complemento varchar(255)
+}
+
+Table EnderecoLoja {
+  id uuid [primary key]
+  cep char(8)
+  rua varchar(80)
+  bairro varchar(20)
+  cidade varchar(20)
+  estado varchar(20)
+  numero varchar(20)
+  complemento varchar(255)
+}
+
+Table Equipamento {
+  id uuid [primary key]
+  cliente_id uuid [ref: > Clientes.id]
+  tipo varchar(20)
+  marca varchar(30)
+  modelo varchar(30)
+  n_serial varchar(100)
+}
+
+Table Processador {
+  id uuid [primary key]
+  equipamento_id uuid [ref: > Equipamento.id]
+  marca varchar(20)
+  modelo varchar(20)
+  observacao varchar(20)
+}
+
+Table Memoria {
+  id uuid [primary key]
+  equipamento_id uuid [ref: > Equipamento.id]
+  marca char(20)
+  modelo char(20)
+  tipo char(20)
+  capacidade_gb int
+  quantidade char(4)
+  observacao char(255)
+}
+
+Table Armazenamento {
+  id uuid [primary key]
+  equipamento_id uuid [ref: > Equipamento.id]
+  marca char(20)
+  modelo char(20)
+  tipo char(20)
+  capacidade_gb int
+  quantidade char(20)
+  observacao char(255)
+}
+
+Table OrdemDeServico {
+  id uui [primary key]
+  cliente_id uuid [ref: > Clientes.id]
+  tecnico_id uuid [ref: > Tecnicos.id]
+  equipamento_id uuid [ref: > Equipamento.id]
+
+}
